@@ -1,0 +1,16 @@
+#Integrantes
+#Chris Villalobos Tamez
+
+
+try{
+    $servicios = Get-Service 
+
+    $ruta_script = Join-Path -Path $PSScriptRoot -ChildPath "servicios.csv"
+
+    $servicios | Select-Object Name, DisplayName, Status, StartType | Export-Csv -Path "$ruta_script" -NoTypeInformation
+
+    Write-Host "Ejecución sin errores"
+
+} catch{
+    Write-Host "Error al exportar servicios:" $_.Exception.Message
+}
